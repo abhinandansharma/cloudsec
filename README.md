@@ -1,15 +1,18 @@
 CloudSec Using hybrid computing
 # Install Instruction
  
-chmod +x script.py
+chmod +x script.sh
 
-./script.py
+./script.sh
 
 # To Activate Enviroment
 
 . cloudsecenv/bin/activate
 
-# To Run Tool
+# To Deactivate
+deactivate
+
+# To Run Tool after activating enviroment
 
 cloudsec --help
 
@@ -19,4 +22,6 @@ cloudsec --help
 
 -f file path to split and encrypt
 
-	
+## Example
+
+cloudsec -f text.txt -s 3
