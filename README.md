@@ -11,6 +11,12 @@ chmod +x script.py
 
 # To Run Tool
 
-cloudsec
+cloudsec --help
+
+# Options
+
+-s No of segment to be done of given file
+
+-f file path to split and encrypt
 
 	
