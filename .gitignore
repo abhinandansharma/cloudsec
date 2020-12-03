@@ -3,3 +3,4 @@ cloudsecenv
 main/__pycache__/
 main/__pycache__/_main.cpython-38.pyc
 context/__pycache__/
+uploads/
