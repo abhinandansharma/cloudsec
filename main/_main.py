@@ -1,6 +1,7 @@
 from context import optparse
 from context.finalkey import finalkeygeneration
 import os
+import subprocess
 
 def dividefile(content,size):
     file_size = len(content) // size
@@ -48,10 +49,22 @@ def start():
         print("Error Dividing File")
     if(not local and remote):
         os.system("rclone copy uploads "+remote+":test -v")
-        if(os.path.isdir(remote)):
+        output = subprocess.check_output("rclone ls "+remote+":test",shell=True)
+        k = output.split(b'\n')
+        outputlist = []
+        for i in range(len(k)):
+            real = str(k[i])
+            templist = real.split(" ")
+            outputlist.append(templist[len(templist)-1][0:-1])
+        outputlist = outputlist[0:-1]
+        filepresent = True
+        for i in os.listdir("uploads"):
+            if(i not in outputlist):
+                filepresent = False
+                break
+        if(filepresent):
             print("File Tranferred to Cloud")
             finalkeygeneration()
-            os.rmdir("drive")
         else:
             print("Error Tranffering file to Cloud")
             print("Encrypted Files are present at Uploads")
