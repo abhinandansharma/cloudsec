@@ -48,7 +48,7 @@ def start():
         print("Error Dividing File")
     if(not local and remote):
         os.system("rclone copy uploads "+remote+":test -v")
-        if(os.path.isdir("drive")):
+        if(os.path.isdir(remote)):
             print("File Tranferred to Cloud")
             finalkeygeneration()
             os.rmdir("drive")
