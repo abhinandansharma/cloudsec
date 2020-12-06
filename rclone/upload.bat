@@ -1,1 +1,0 @@
-C:\wsl\cloudsec\rclone\rclone.exe copy "C://wsl/cloudsec/uploads" remote:test -v
