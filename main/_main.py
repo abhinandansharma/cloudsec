@@ -1,4 +1,5 @@
 from context import optparse
+from context.finalkey import finalkeygeneration
 import os
 
 def dividefile(content,size):
@@ -7,7 +8,7 @@ def dividefile(content,size):
     os.mkdir('uploads')
     try:
         for i in range(size):
-            filename = "uploads/file"+str(i+1)
+            filename = "uploads/files"+str(i+1)
             with open(filename,'w') as fp:
                 if(size == i+1):
                     fp.write(content[i*file_size:])
@@ -30,8 +31,13 @@ def start():
     if(not os.path.isfile(args.file)):
         print("Not a file ",args.file)
         return
+    remote = args.remote
     passed_file = args.file
     passed_segment = args.segment
+    local = args.local
+    if(not remote and not local):
+        print("Remote Name Necessary to upload")
+    
     filetext = ""
     with open(passed_file,'r') as fp:
         filetext += fp.read()
@@ -40,4 +46,13 @@ def start():
         print("File Dividing Success")
     else:
         print("Error Dividing File")
+    if(not local and remote):
+        os.system("rclone copy uploads drive:test -v")
+        if(os.path.isdir("drive")):
+            print("File Tranferred to Cloud")
+            finalkeygeneration()
+            os.rmdir("drive")
+        else:
+            print("Error Tranffering file to Cloud")
+
     
