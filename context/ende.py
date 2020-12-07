@@ -52,20 +52,20 @@ def getKey(password):
     hasher = SHA256.new(password.encode(‘utf-8’))
     return hasher.digest()
 
-def Main():
-    choice = input(“Would you like to (E)ncrypt or (D)ecrypt?: “)
-    if choice == ‘E’ or choice == ‘e’:
-    filename = input(“File to encrypt: “)
-    password = input(“Password: “)
-    encrypt(getKey(password), filename)
-    print(“Done.”)
-    elif choice == ‘D’ or choice == ‘d’:
-    filename = input(“File to decrypt: “)
-    password = input(“Password: “)
-    decrypt(getKey(password), filename)
-    print(“Done.”)
-    else:
-    print(“No Option selected, closing…”)
+# def Main():
+#     choice = input(“Would you like to (E)ncrypt or (D)ecrypt?: “)
+#     if choice == ‘E’ or choice == ‘e’:
+#     filename = input(“File to encrypt: “)
+#     password = input(“Password: “)
+#     encrypt(getKey(password), filename)
+#     print(“Done.”)
+#     elif choice == ‘D’ or choice == ‘d’:
+#     filename = input(“File to decrypt: “)
+#     password = input(“Password: “)
+#     decrypt(getKey(password), filename)
+#     print(“Done.”)
+#     else:
+#     print(“No Option selected, closing…”)
 
-if __name__ == ‘__main__’:
-    Main()
+# if __name__ == ‘__main__’:
+#     Main()

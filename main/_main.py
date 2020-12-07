@@ -1,5 +1,6 @@
 from context import optparse
 from context.finalkey import finalkeygeneration
+from context import ende
 import os
 
 def dividefile(content,size):
@@ -46,6 +47,29 @@ def start():
         print("File Dividing Success")
     else:
         print("Error Dividing File")
+
+    # encryption / decryption part
+    # define choice here first 
+    if choice == ‘E’ or choice == ‘e’:
+        path = "uploads/"
+        for i in range(no_of_files): #define no_of_files
+            file = next(
+                join(path, f) for f in os.listdir(path) if isfile(join(path, f)))
+            password_length = 12
+            possible_characters = "abcdefghijklmnopqrstuvwxyz1234567890"
+            random_character_list = [random.choice(possible_characters) for i in range(password_length)]
+            password = "".join(random_character_list) 
+            encrypt(getKey(password), filename)
+            print(“Done.”)
+            elif choice == ‘D’ or choice == ‘d’:
+            filename = input(“File to decrypt: “)
+            password = input(“Password: “)
+            decrypt(getKey(password), filename)
+            print(“Done.”)
+            else:
+            print(“No Option selected, closing…”)
+
+
     if(not local and remote):
         os.system("rclone copy uploads drive:test -v")
         if(os.path.isdir("drive")):
