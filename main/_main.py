@@ -3,8 +3,8 @@ from . import encryptmain, decryptmain
 import os
 
 
+
 def start():
-    print("Initializing")
     args = optparse.parser()
     if(args.subparser_name == 'encrypt'):
         encryptmain.initialize(args)

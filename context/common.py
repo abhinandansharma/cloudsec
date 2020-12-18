@@ -1,5 +1,6 @@
 import os
 import uuid
+from . import color
 
 def dividefile(content,size):
     file_size = len(content) // size
@@ -16,7 +17,7 @@ def dividefile(content,size):
                     fp.write(content[i*file_size:])
                 else:
                     fp.write(content[i*file_size:(i+1)*file_size])
-            print("File Path: ",filename)
+            color.col_upload("File Path: ",filename)
         return filelist
     except Exception as e:
         print(e)

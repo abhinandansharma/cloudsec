@@ -4,8 +4,10 @@ import json
 from context.finalkey import keydecryption
 from context.ende import decryptmains
 from context.common import combinefile
+from context.color import col_error, col_warning, col_info, col_connect
 
 def initialize(args):
+    col_connect("Starting Decryption")
     remote = args.remote
     decryptfile = args.dfile
     content = b""
@@ -13,10 +15,11 @@ def initialize(args):
         with open(decryptfile,'rb') as fp:
             content = fp.read().split(b"\n")
     else:
-        print("File Not Exist")
+        col_error("File Not Exist")
         return
     data = keydecryption(content[1],content[0])
     content = json.loads(data)
+    col_info("Key Decrypted")
     filelist = []
     for i in content:
         filelist.append(i)
@@ -34,15 +37,16 @@ def initialize(args):
             filepresent = False
             break
     if(not filepresent):
-        print("File not Present on Cloud")
+        col_error("File not Present on Cloud")
         return
-    print("Files Found on Cloud")
+    col_info("Files Found on Cloud")
     os.system('rm -rf uploads')
     os.mkdir('uploads')
     for i in filelist:
         os.system("rclone copy "+remote+":test/"+i+" uploads -v")
+    col_info("Files Downloaded")
     decryptmains(content)
-    print("File Decrypted")
+    col_info("File Decrypted")
     combinefile(content)
-    print("Files Assembled Succesfull")
-    print("Output File name is outputfile")
+    col_info("Files Assembled Succesfull")
+    col_connect("Output File name is outputfile")
