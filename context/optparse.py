@@ -12,5 +12,6 @@ def parser():
     parserb.add_argument('-l','--local',help="If locally encrypted and not uploaded to cloud",default=False,action="store_true")
     parserb.add_argument('-d','--dfile',help="File Containing Key")
     parserb.add_argument('-r','--remote',help="Remote Name defined in configuration of cloud")
+    parserc = subparser.add_parser('config',help="Configuration of Cloud Account")
     args = parser.parse_args()
     return args

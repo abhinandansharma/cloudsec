@@ -44,4 +44,5 @@ def initialize(args):
     decryptmains(content)
     print("File Decrypted")
     combinefile(content)
+    print("Files Assembled Succesfull")
     print("Output File name is outputfile")
