@@ -8,10 +8,9 @@ def parser():
     parsera.add_argument('-s','--segment',help="Segment of file between 2 to 4",default=3,type=int)
     parsera.add_argument('-r','--remote',help="Remote Name defined in configuration of cloud")
     parsera.add_argument('-l','--local',help="If locally encrypted and not uploaded to cloud",default=False,action="store_true")
-    parsera.add_argument('-p','--password',help="Password Require for final key generation")
     parserb = subparser.add_parser('decrypt',help="Used in Decryption | cloudsec decrypt --help")
     parserb.add_argument('-l','--local',help="If locally encrypted and not uploaded to cloud",default=False,action="store_true")
-    parserb.add_argument('-et','--encodedtext',help="Encoded text returned by system on encryption")
-    parserb.add_argument('-p','--password',help="Password Required for decryption")
+    parserb.add_argument('-d','--dfile',help="File Containing Key")
+    parserb.add_argument('-r','--remote',help="Remote Name defined in configuration of cloud")
     args = parser.parse_args()
     return args
