@@ -25,26 +25,25 @@ cloudsec decrypt --help
 
 ## Encrypt Options
 
--s No of segment to be done of given file
-
--f file path to split and encrypt
-
--p Password used for final key generation and decryption
-
--l If stored only locally not to cloud
-
--r Remote Name
+-h, --help            show this help message and exit
+-f FILE, --file FILE  File Name
+-s SEGMENT, --segment SEGMENT
+                        Segment of file between 2 to 4
+-r REMOTE, --remote REMOTE
+                        Remote Name defined in configuration of cloud
+-l, --local           If locally encrypted and not uploaded to cloud
 
 ## Decryption Options
 
--p Password for decryption
-
--l if files present locally
-
--et Encoded text or final key
+  -h, --help            show this help message and exit
+  -l, --local           If locally encrypted and not uploaded to cloud
+  -d DFILE, --dfile DFILE
+                        File Containing Key
+  -r REMOTE, --remote REMOTE
+                        Remote Name defined in configuration of cloud
 
 ## Example
 
-cloudsec encrypt -f test -s 3 -r remote -p random_pass
+cloudsec encrypt -f test -s 3 -r remote
 
-cloudsec decrypt -p random_pass -et your_encoded_text
+cloudsec decrypt -d /root/secretkey -r remote
